@@ -6,8 +6,8 @@ import messages from '../messages'
 import apiUrl from '../../apiConfig'
 
 class SignUp extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
 
     this.state = {
       email: '',

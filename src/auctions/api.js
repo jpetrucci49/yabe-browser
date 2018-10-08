@@ -1,3 +1,4 @@
+
 import apiUrl from '../apiConfig'
 
 export const handleErrors = res => {
@@ -8,19 +9,13 @@ export const handleErrors = res => {
   }
 }
 
-export const signUp = credentials => {
-  return fetch(apiUrl + '/sign-up', {
-    method: 'POST',
+export const itemIndex = items => {
+  return fetch(apiUrl + '/items', {
+    method: 'GET',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-      credentials: {
-        email: credentials.email,
-        password: credentials.password,
-        password_confirmation: credentials.passwordConfirmation
-      }
-    })
+    data
   })
 }
 

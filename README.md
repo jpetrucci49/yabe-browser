@@ -1,3 +1,45 @@
+# Yabe Browser
+
+Technologies used in this project include React.js, HTML, SASS, JavaScript, JSX, and the DOM.
+
+This client will connect to my heroku database where a user can create, read, update and destroy auction items, pending authentication, and provided ownership using Mongodb.
+
+# Heroku API Repo:
+
+https://TBD
+
+## Live Sites:
+
+https://TBD \
+https://TBD
+
+## Planning
+
+My plan for coding this project was to segment elements into re-usable components to be used to develop and implement features dynamically. Firstly, deploy my backend mongodb for login functionality including sign in, sign up, change password and sign out. Secondly, add a new schema to the database for users to add auction items. Finally, to implement form handlers for user submissions and CRUD requests.
+
+### Unsolved Issues:
+
+Will update upon project completion
+
+# User stories:
+
+Version 1: \
+As a user, I want to be able to log in to my account \
+As a user, I want to be able to see a list of auctions. \
+As a user, I want to be able to see a single auction item. \
+As a user, I want to be able to bid on an item. \
+As a user, I want to be able to edit my auction items. \
+As a user, I need to be able to remove my items.
+
+Version 2: \
+As a user, I want to have many lists, composed of many different items \
+As a user, I want to see on a map where all my activities are
+
+### Wireframe:
+
+![Image of View](./public/view.jpg)
+![Image of Unauthorized](./public/unauthorized.jpg)
+![Image of Authorized](./public/authorized.jpg)
 
 ## Structure
 
