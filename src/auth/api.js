@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:4741'
+import apiUrl from '../apiConfig'
 
 export const handleErrors = res => {
   if (res.ok) {
@@ -33,7 +33,24 @@ export const signIn = credentials => {
     body: JSON.stringify({
       credentials: {
         email: credentials.email,
-        password: credentials.password,
+        password: credentials.password
+      }
+    })
+  })
+}
+
+export const newItem = (data, user) => {
+  return fetch(apiUrl + '/items', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization':`Token token=${user.token}`
+    },
+    body: JSON.stringify({
+      item: {
+        name: data.name,
+        desc: data.desc,
+        price: data.price
       }
     })
   })

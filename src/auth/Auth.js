@@ -8,6 +8,9 @@ import SignUp from './components/SignUp'
 import SignIn from './components/SignIn'
 import SignOut from './components/SignOut'
 import ChangePassword from './components/ChangePassword'
+import ItemIndex from '../auctions/components/ItemIndex'
+import ItemShow from '../auctions/components/ItemShow'
+import ItemNew from '../auctions/components/ItemNew'
 
 class Auth extends Component {
   constructor () {
@@ -53,6 +56,15 @@ class Auth extends Component {
         <AuthenticatedRoute user={user} path='/change-password' render={() => (
           <ChangePassword flash={this.flash} user={user} />
         )} />
+        <AuthenticatedRoute user={user} path='/items' render={() => (
+          <ItemIndex flash={this.flash} user={user} />
+        )} />
+        <AuthenticatedRoute user={user} path='/items/:id/show' render={() => (
+          <ItemShow flash={this.flash} user={user} />
+        )}/>
+        <AuthenticatedRoute user={user} path='/items/new' render={() => (
+          <ItemNew flash={this.flash} user={user} />
+        )}/>
       </Fragment>
     )
   }

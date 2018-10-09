@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
+import './App.scss'
+import { Route, Link } from 'react-router-dom'
 import Auth from './auth/Auth'
-import Counter from './counter/Counter'
 
 class App extends Component {
 
@@ -8,11 +9,11 @@ class App extends Component {
 
     return (
       <Fragment>
-        <Auth/>
-        <Counter/>
+        <main className="container">
+          <Auth/>
+        </main>
       </Fragment>
     )
   }
 }
-
 export default App
