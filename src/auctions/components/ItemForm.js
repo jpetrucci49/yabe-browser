@@ -6,13 +6,15 @@ const ItemForm = (props) => {
 
   return (
     <Fragment>
-      <h1>{formattedAction} Item</h1>
+      <form onSubmit={handleSubmit}>
+        <h1>{formattedAction} Item</h1>
 
-      <p><input type="text" name="name" value={item.name} onChange={handleChange} placeholder="name" /></p>
-      <p><input type="text" name="desc" value={item.desc} onChange={handleChange} placeholder="description" /></p>
-      <p><input type="text" name="price" value={item.price} onChange={handleChange} placeholder="price" /></p>
+        <p><input type="text" name="name" value={item.name} onChange={handleChange} placeholder="name" /></p>
+        <p><input type="text" name="desc" value={item.desc} onChange={handleChange} placeholder="description" /></p>
+        <p><input type="text" name="price" value={item.price} onChange={handleChange} placeholder="price" /></p>
 
-      <p><input type="submit" value="Submit" onClick={handleSubmit} /></p>
+        <p><input type="submit" value="Submit" /></p>
+      </form>
     </Fragment>
   )
 }

@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { Component } from 'react'
 import apiUrl from '../../apiConfig'
 import ItemForm from './ItemForm'
-import ItemIndex from './ItemIndex'
+import axios from 'axios'
+import { withRouter } from 'react-router-dom'
 import messages from '../../auth/messages'
-import { newItem } from '../../auth/api'
 
-class ItemNew extends React.Component {
+class ItemNew extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -22,16 +22,19 @@ class ItemNew extends React.Component {
     this.setState({item: newItem})
   }
 
-  handleSubmit = event => {
+  handleSubmit = async (event) => {
     event.preventDefault()
 
     const itemParams = JSON.stringify({item: this.state.item})
-    const { user, flash } = this.props
-    newItem(this.state.item, user)
-      .then(res => res.ok ? res : new Error())
-      .then(res => res.json())
-      .then(() => flash(messages.newItemSuccess, 'flash-success'))
-      .catch(() => flash(messages.newItemFailure, 'flash-error'))
+    const { user, flash, history } = this.props
+    const response = await axios.post(`${apiUrl}/items`, itemParams, { 'headers': { 'Authorization': `Bearer ${user.token}` }})
+    history.push(`/items/${response.data.item._id}/show`)
+
+    // newItem(this.state.item, user)
+    //   .then(res => res.ok ? res : new Error())
+    //   .then(res => res.json())
+    //   .then(() => flash(messages.newItemSuccess, 'flash-success'))
+    //   .catch(() => flash(messages.newItemFailure, 'flash-error'))
   }
 
   render() {
@@ -50,4 +53,4 @@ class ItemNew extends React.Component {
   }
 }
 
-export default ItemNew
+export default withRouter(ItemNew)

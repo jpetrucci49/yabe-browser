@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
+import { withRouter } from 'react-router-dom'
 
 class ItemShow extends Component {
   constructor (props) {
@@ -12,10 +13,9 @@ class ItemShow extends Component {
 
   async componentDidMount() {
     const { user } = this.props
-    console.log(this)
-    // const response = await axios.get(`${apiUrl}/items/${this.props.match.params._id}`, { 'headers': { 'Authorization': `Bearer ${user.token}` }})
-    // this.setState({item: response.data.item})
-    // console.log(response)
+    const { id } = this.props.match.params
+    const response = await axios.get(`${apiUrl}/items/${id}`, { 'headers': { 'Authorization': `Bearer ${user.token}` }})
+    this.setState({item: response.data.item})
   }
 
   render() {
@@ -38,4 +38,4 @@ class ItemShow extends Component {
   }
 }
 
-export default ItemShow
+export default withRouter(ItemShow)
