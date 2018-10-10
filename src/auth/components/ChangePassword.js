@@ -6,8 +6,8 @@ import messages from '../messages'
 import apiUrl from '../../apiConfig'
 
 class ChangePassword extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
 
     this.state = {
       oldPassword: '',
