@@ -1,27 +1,28 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 
 import './Header.scss'
 
 const authenticatedOptions = (
-  <React.Fragment>
+  <Fragment>
     <Link to="/change-password">Change Password</Link>
     <Link to="/sign-out">Sign Out</Link>
     <Link to="/items">Items</Link>
-  </React.Fragment>
+    <Link to="/items/new">New Item</Link>
+  </Fragment>
 )
 
 const unauthenticatedOptions = (
-  <React.Fragment>
+  <Fragment>
     <Link to="/sign-up">Sign Up</Link>
     <Link to="/sign-in">Sign In</Link>
-  </React.Fragment>
+  </Fragment>
 )
 
 const alwaysOptions = (
-  <React.Fragment>
+  <Fragment>
     <Link to="/">Home</Link>
-  </React.Fragment>
+  </Fragment>
 )
 
 const Header = ({ user }) => (

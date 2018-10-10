@@ -8,5 +8,8 @@ export default {
   signOutSuccess: 'Come back soon!',
   changePasswordSuccess: 'Password changed successfully!',
   changePasswordFailure: 'Failed to change passwords. Check your old password' +
-                         ' and try again.'
+                         ' and try again.',
+  newItemFailure: 'You have failed to create a new Auction',
+  newItemSuccess: 'Congratulations on listing a new Auction! Good luck on' +
+                  ' your bidding!'
 }

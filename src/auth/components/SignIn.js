@@ -19,7 +19,7 @@ class SignIn extends Component {
     [event.target.name]: event.target.value
   })
 
-  signIn = event => {
+  handleSubmit = event => {
     event.preventDefault()
 
     const { email, password } = this.state
@@ -38,7 +38,7 @@ class SignIn extends Component {
     const { email, password } = this.state
 
     return (
-      <form className='auth-form' onSubmit={this.signIn}>
+      <form className='auth-form' onSubmit={this.handleSubmit}>
         <h3>Sign In</h3>
         <label htmlFor="email">Email</label>
         <input
