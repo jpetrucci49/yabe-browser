@@ -29,11 +29,6 @@ class ItemEdit extends Component {
     const response = await axios.patch(`${apiUrl}/items/${match.params.id}`, itemParams, { 'headers': { 'Authorization': `Bearer ${user.token}` }})
     history.push(`/items/${match.params.id}/show`)
   }
-  //
-  // async componentDidMount() {
-  //   const response = await axios.get(`${apiUrl}/items/${this.props.match.params.id}`)
-  //   this.setState({item: response.data.item})
-  // }
 
   render() {
     const { item } = this.state

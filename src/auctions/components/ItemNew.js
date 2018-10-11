@@ -12,7 +12,7 @@ class ItemNew extends Component {
       item: {
         name: '',
         desc: '',
-        price: ''
+        price: '0'
       }
     }
   }
@@ -24,17 +24,18 @@ class ItemNew extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault()
-
-    const itemParams = JSON.stringify({item: this.state.item})
     const { user, flash, history } = this.props
-    const response = await axios.post(`${apiUrl}/items`, itemParams, { 'headers': { 'Authorization': `Bearer ${user.token}` }})
-    history.push(`/items/${response.data.item._id}/show`)
-
-    // newItem(this.state.item, user)
-    //   .then(res => res.ok ? res : new Error())
-    //   .then(res => res.json())
-    //   .then(() => flash(messages.newItemSuccess, 'flash-success'))
-    //   .catch(() => flash(messages.newItemFailure, 'flash-error'))
+    if ( this.state.item.price < 0 ) {
+      flash('Surely, you don\'t really want to pay someone to take this item. Try again!', 'flash-error')
+    } else {
+      const dollars = Object.assign({}, this.state.item)
+      dollars.price = '$' + this.state.item.price
+      const itemParams = JSON.stringify({item: dollars})
+      const response = await axios.post(`${apiUrl}/items`, itemParams, { 'headers': { 'Authorization': `Bearer ${user.token}` }})
+        .then(res => history.push(`/items/${res.data.item._id}/show`))
+        .then(() => flash(messages.newItemSuccess, 'flash-success'))
+        .catch(() => flash(messages.newItemFailure, 'flash-error'))
+    }
   }
 
   render() {

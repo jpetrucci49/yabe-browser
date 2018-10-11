@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
@@ -27,7 +27,9 @@ class ItemIndex extends Component {
   }
 
   render() {
+    const { user } = this.props
     const itemCells = this.state.items.map(item => {
+      const isOwner = (user._id === item.owner)
       return (
         <div key={item._id} className="col-md-4">
           <h1>{item.name}</h1>
@@ -41,13 +43,19 @@ class ItemIndex extends Component {
           </ul>
           <Link to={`/items/${item._id}/show`}>
             <button> View this Auction </button>
-          </Link>
-          <Link to={`/items/${item._id}/edit`}>
-            <button> Edit this Auction </button>
-          </Link>
-          <Link to={'/items/'}>
-            <button onClick={event => this.deleteItem(event, item._id)}> Delete this Auction </button>
-          </Link>
+          </Link><br />
+          {isOwner ? (
+            <Fragment>
+              <Link to={`/items/${item._id}/edit`}>
+                <button> Edit this Auction </button>
+              </Link><br/>
+              <Link to={'/items/'}>
+                <button onClick={event => this.deleteItem(event, item._id)}> Delete this Auction </button>
+              </Link><br/>
+            </Fragment>
+          ) : (
+            ''
+          )}
         </div>
       )
     })

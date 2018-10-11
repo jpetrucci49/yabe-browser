@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
+import ItemBid from './ItemBid'
 
 class ItemShow extends Component {
   constructor (props) {
@@ -9,6 +10,20 @@ class ItemShow extends Component {
     this.state = {
       item: {}
     }
+  }
+
+  handleBid = async (newPrice) => {
+    const copy = Object.assign({}, this.state.item)
+    copy.price = newPrice
+    this.setState({item: copy})
+  }
+
+  async deleteItem(event, itemId) {
+    event.preventDefault()
+
+    const { user, history } = this.props
+    await axios.delete(`${apiUrl}/items/${itemId}`, { 'headers': { 'Authorization': `Bearer ${user.token}` }})
+    history.push('/items')
   }
 
   async componentDidMount() {
@@ -20,6 +35,8 @@ class ItemShow extends Component {
 
   render() {
     const { item } = this.state
+    const { user } = this.props
+    const isNotOwner = (user._id != item.owner)
     return (
       <section className='container'>
         <div key={item._id}>
@@ -32,6 +49,18 @@ class ItemShow extends Component {
             <li>exp - {item.expiration_date}</li>
             <li>owner - {item.owner}</li>
           </ul>
+          {isNotOwner ? (
+            <ItemBid item={item} user={user} sendBid={this.handleBid}/>
+          ) : (
+            <Fragment>
+              <Link to={`/items/${item._id}/edit`}>
+                <button> Edit this Auction </button>
+              </Link>
+              <Link to={'/items/'}>
+                <button onClick={event => this.deleteItem(event, item._id)}> Delete this Auction </button>
+              </Link><br/>
+            </Fragment>
+          )}
         </div>
       </section>
     )
