@@ -21,9 +21,11 @@ class ItemShow extends Component {
   async deleteItem(event, itemId) {
     event.preventDefault()
 
-    const { user, history } = this.props
+    const { user, history, flash } = this.props
     await axios.delete(`${apiUrl}/items/${itemId}`, { 'headers': { 'Authorization': `Bearer ${user.token}` }})
-    history.push('/items')
+      .then(() => history.push('/items'))
+      .then(() => flash('Your auction item has been deleted!', 'flash-success'))
+      .catch(() => flash('There was an error deleting this auction item.', 'flash-error'))
   }
 
   async componentDidMount() {

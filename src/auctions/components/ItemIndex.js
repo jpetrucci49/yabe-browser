@@ -15,9 +15,11 @@ class ItemIndex extends Component {
   async deleteItem(event, itemId) {
     event.preventDefault()
 
-    const { user } = this.props
+    const { user, flash } = this.props
     await axios.delete(`${apiUrl}/items/${itemId}`, { 'headers': { 'Authorization': `Bearer ${user.token}` }})
-    this.setState({items: this.state.items.filter(item => item._id !== itemId)})
+      .then(() => this.setState({items: this.state.items.filter(item => item._id !== itemId)}))
+      .then(() => flash('Your auction item has been deleted!', 'flash-success'))
+      .catch(() => flash('There was an error deleting this auction item.', 'flash-error'))
   }
 
   async componentDidMount() {

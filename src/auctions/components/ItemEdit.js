@@ -27,7 +27,9 @@ class ItemEdit extends Component {
     const itemParams = JSON.stringify({item: this.state.item})
     const { user, flash, history, match } = this.props
     const response = await axios.patch(`${apiUrl}/items/${match.params.id}`, itemParams, { 'headers': { 'Authorization': `Bearer ${user.token}` }})
-    history.push(`/items/${match.params.id}/show`)
+      .then(() => history.push(`/items/${match.params.id}/show`))
+      .then(() => flash('Your auction item has been successfully edited!', 'flash-success'))
+      .catch(() => flash('There was an error editing this auction item.', 'flash-error'))
   }
 
   render() {
