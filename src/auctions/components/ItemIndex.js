@@ -38,9 +38,9 @@ class ItemIndex extends Component {
         <div key={item._id} className="col-md-4">
           <h3>{item.name}</h3>
           <ul>
-            <li>desc - {item.desc}</li>
-            <li>price - {item.price}</li>
-            <li>exp - {dateFormat(item.expiration_date, 'dddd, mmmm dS, yyyy, h:MM:ss TT')}</li>
+            <li>{item.desc}</li>
+            <li>{item.price}</li>
+            <li>{dateFormat(item.expiration_date, 'dddd, mmmm dS, yyyy, h:MM:ss TT')}</li>
           </ul>
           <Link to={`/items/${item._id}/show`}>
             <div className="centered">

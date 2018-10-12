@@ -43,21 +43,25 @@ class ItemShow extends Component {
     return (
       <section className='col-md-12'>
         <div key={item._id}>
-          <h1 className=''>{item.name}</h1>
+          <h3>{item.name}</h3>
           <ul>
-            <li>desc - {item.desc}</li>
-            <li>price - {item.price}</li>
-            <li>exp - {item.expiration_date}</li>
+            <li>{item.desc}</li>
+            <li>{item.price}</li>
+            <li>{item.expiration_date}</li>
           </ul>
           {isNotOwner ? (
             <ItemBid flash={flash} item={item} user={user} sendBid={this.handleBid}/>
           ) : (
             <Fragment>
               <Link to={`/items/${item._id}/edit`}>
-                <button> Edit this Auction </button>
+                <div className="centered">
+                  <button> Edit this Auction </button>
+                </div>
               </Link><br />
               <Link to={'/items/'}>
-                <button onClick={event => this.deleteItem(event, item._id)}> Delete this Auction </button>
+                <div className="centered">
+                  <button onClick={event => this.deleteItem(event, item._id)}> Delete this Auction </button>
+                </div>
               </Link><br/>
             </Fragment>
           )}

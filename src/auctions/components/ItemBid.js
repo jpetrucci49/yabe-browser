@@ -42,12 +42,16 @@ class ItemBid extends Component {
 
     return (
       <section className='container'>
-        <BidForm
-          action="bid on this"
-          item={item}
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-        />
+        <div className='row'>
+          <div className='col-md-12'>
+            <BidForm
+              action="bid on this"
+              item={item}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+            />
+          </div>
+        </div>
       </section>
     )
   }

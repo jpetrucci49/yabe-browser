@@ -37,12 +37,16 @@ class ItemEdit extends Component {
 
     return (
       <section className='container'>
-        <ItemForm
-          action="edit"
-          item={item}
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-        />
+        <div className='row'>
+          <div className='col-md-12'>
+            <ItemForm
+              action="edit"
+              item={item}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+            />
+          </div>
+        </div>
       </section>
     )
   }
