@@ -6,12 +6,12 @@ This client will connect to my heroku database where a user can create, read, up
 
 # Heroku API Repo:
 
-https://TBD
+https://github.com/jpetrucci49/yabe-server
 
 ## Live Sites:
 
-https://TBD \
-https://TBD
+Browser - https://jpetrucci49.github.io/yabe-browser \
+Server - https://yabe-server.herokuapp.com
 
 ## Planning
 
@@ -19,12 +19,14 @@ My plan for coding this project was to segment elements into re-usable component
 
 ### Unsolved Issues:
 
-Will update upon project completion
+The aunctioning functionality hasn't yet been completed. Next steps will be to add web hooks for pinging clients on changes to bid prices. \
+Date display still isn't implemented properly. Needs date picker for expiration date on item creation. \
+Also, a lack of page styling and layout. Updates to button styles and data displays in future itterations. \
 
 # User stories:
 
 Version 1: \
-As a user, I want to be able to log in to my account \
+As a user, I want to be able to log in to my account. \
 As a user, I want to be able to see a list of auctions. \
 As a user, I want to be able to see a single auction item. \
 As a user, I want to be able to bid on an item. \
@@ -32,8 +34,10 @@ As a user, I want to be able to edit my auction items. \
 As a user, I need to be able to remove my items.
 
 Version 2: \
-As a user, I want to have many lists, composed of many different items \
-As a user, I want to see on a map where all my activities are
+As a user, I want to view other bidders submissions live as they are submitted. \
+As a user, I want to see when the auction expires in a meaningful way \
+As a user, I want to see who the current top bidder for any auction item. \
+As a user, I want to be able to win auctions which expire while I am top bidder.
 
 ### Wireframe:
 
@@ -82,3 +86,13 @@ In the auth components, flash messages are used in conjunction with the
 
  To change the duration of the message, replace `2000` with a value of your
  choice (in milliseconds) in the `flash` method definition in `Auth.js`.
+
+ ### Item Creation
+
+ The create item feature uses form submission to capture input values and parse them
+ down into JSON data to be sent to the server in an HTTP request.
+
+ ### Bid Functionality
+
+ The bid Functionality uses form submission to capture input values and calculate the total
+ price of the bid, and parse it down into JSON data to be sent tot the server in an HTTP request.
