@@ -32,16 +32,14 @@ class ItemIndex extends Component {
     const { user } = this.props
     const itemCells = this.state.items.map(item => {
       const isOwner = (user._id === item.owner)
+
       return (
         <div key={item._id} className="col-md-4">
-          <h1>{item.name}</h1>
+          <h3>{item.name}</h3>
           <ul>
-            <li>id - <Link id={item._id} to={`/items/${item._id}/show`}>{item._id}</Link></li>
-            <li>name - {item.name}</li>
             <li>desc - {item.desc}</li>
             <li>price - {item.price}</li>
             <li>exp - {item.expiration_date}</li>
-            <li>owner - {item.owner}</li>
           </ul>
           <Link to={`/items/${item._id}/show`}>
             <button> View this Auction </button>
@@ -65,7 +63,15 @@ class ItemIndex extends Component {
     return (
       <section className='container'>
         <div className='row'>
-          {itemCells}
+          {itemCells.length === 0 ? (
+            <div className="col-md-4">
+              <h3>Sorry, there is no list</h3>
+            </div>
+          ) : (
+            <Fragment>
+              {itemCells}
+            </Fragment>
+          )}
         </div>
       </section>
     )
