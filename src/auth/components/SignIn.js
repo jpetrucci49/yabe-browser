@@ -11,7 +11,7 @@ class SignIn extends Component {
 
     this.state = {
       email: '',
-      password: '',
+      password: ''
     }
   }
 
@@ -31,7 +31,13 @@ class SignIn extends Component {
       .then(res => setUser(res.user))
       .then(() => flash(messages.signInSuccess, 'flash-success'))
       .then(() => history.push('/'))
-      .catch(() => flash(messages.signInFailure, 'flash-error'))
+      .catch(() => {
+        this.setState({
+          email: '',
+          password: ''
+        })
+        flash(messages.signInFailure, 'flash-error')
+      })
   }
 
   render () {

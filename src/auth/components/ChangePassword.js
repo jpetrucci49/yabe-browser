@@ -11,7 +11,7 @@ class ChangePassword extends Component {
 
     this.state = {
       oldPassword: '',
-      newPassword: '',
+      newPassword: ''
     }
   }
 
@@ -29,7 +29,13 @@ class ChangePassword extends Component {
       .then(handleErrors)
       .then(() => flash(messages.changePasswordSuccess, 'flash-success'))
       .then(() => history.push('/'))
-      .catch(() => flash(messages.changePasswordFailure, 'flash-error'))
+      .catch(() => {
+        this.setState({
+          oldPassword: '',
+          newPassword: ''
+        })
+        flash(messages.changePasswordFailure, 'flash-error')
+      })
   }
 
   render () {
