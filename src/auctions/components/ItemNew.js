@@ -42,7 +42,7 @@ class ItemNew extends Component {
     const { item } = this.state
 
     return (
-      <section className='container'>
+      <section className='col-md-12'>
         <ItemForm
           action="create"
           item={item}

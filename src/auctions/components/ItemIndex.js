@@ -32,6 +32,7 @@ class ItemIndex extends Component {
     const { user } = this.props
     const itemCells = this.state.items.map(item => {
       const isOwner = (user._id === item.owner)
+      const dateFormat = require('dateformat')
 
       return (
         <div key={item._id} className="col-md-4">
@@ -39,18 +40,24 @@ class ItemIndex extends Component {
           <ul>
             <li>desc - {item.desc}</li>
             <li>price - {item.price}</li>
-            <li>exp - {item.expiration_date}</li>
+            <li>exp - {dateFormat(item.expiration_date, 'dddd, mmmm dS, yyyy, h:MM:ss TT')}</li>
           </ul>
           <Link to={`/items/${item._id}/show`}>
-            <button> View this Auction </button>
+            <div className="centered">
+              <button> View this Auction </button>
+            </div>
           </Link><br />
           {isOwner ? (
             <Fragment>
               <Link to={`/items/${item._id}/edit`}>
-                <button> Edit this Auction </button>
+                <div className="centered">
+                  <button className="centered"> Edit this Auction </button>
+                </div>
               </Link><br/>
               <Link to={'/items/'}>
-                <button onClick={event => this.deleteItem(event, item._id)}> Delete this Auction </button>
+                <div className="centered">
+                  <button className="centered" onClick={event => this.deleteItem(event, item._id)}> Delete this Auction </button>
+                </div>
               </Link><br/>
             </Fragment>
           ) : (

@@ -8,7 +8,7 @@ const BidForm = (props) => {
   return (
     <Fragment>
       <form onSubmit={handleSubmit}>
-        <h1>{formattedAction} Item</h1>
+        <h4>{formattedAction} Item</h4>
 
         <p><input type="number" step="0.01" name="bid" value={item.bid} onChange={handleChange} placeholder="Amount" /></p>
 

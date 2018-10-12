@@ -39,10 +39,11 @@ class ItemShow extends Component {
     const { item } = this.state
     const { user, flash } = this.props
     const isNotOwner = (user._id != item.owner)
+    const dateFormat = require('dateformat')
     return (
-      <section className='container'>
+      <section className='col-md-12'>
         <div key={item._id}>
-          <h1>{item.name}</h1>
+          <h1 className=''>{item.name}</h1>
           <ul>
             <li>desc - {item.desc}</li>
             <li>price - {item.price}</li>
@@ -54,7 +55,7 @@ class ItemShow extends Component {
             <Fragment>
               <Link to={`/items/${item._id}/edit`}>
                 <button> Edit this Auction </button>
-              </Link>
+              </Link><br />
               <Link to={'/items/'}>
                 <button onClick={event => this.deleteItem(event, item._id)}> Delete this Auction </button>
               </Link><br/>

@@ -46,3 +46,20 @@ $charcoal: #ccc;
     max-width: 200px;
   }
 }
+
+.constainer,
+.col-md-4,
+.col-md-12 {
+  padding: 20px;
+  text-align: center;
+}
+
+li {
+  list-style-type: none;
+  margin: 10px;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+}
