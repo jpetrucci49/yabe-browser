@@ -37,22 +37,19 @@ class ItemShow extends Component {
 
   render() {
     const { item } = this.state
-    const { user } = this.props
+    const { user, flash } = this.props
     const isNotOwner = (user._id != item.owner)
     return (
       <section className='container'>
         <div key={item._id}>
           <h1>{item.name}</h1>
           <ul>
-            <li>id - {item._id}</li>
-            <li>name - {item.name}</li>
             <li>desc - {item.desc}</li>
             <li>price - {item.price}</li>
             <li>exp - {item.expiration_date}</li>
-            <li>owner - {item.owner}</li>
           </ul>
           {isNotOwner ? (
-            <ItemBid item={item} user={user} sendBid={this.handleBid}/>
+            <ItemBid flash={flash} item={item} user={user} sendBid={this.handleBid}/>
           ) : (
             <Fragment>
               <Link to={`/items/${item._id}/edit`}>
