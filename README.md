@@ -23,6 +23,15 @@ The aunctioning functionality hasn't yet been completed. Next steps will be to a
 Date display still isn't implemented properly. Needs date picker for expiration date on item creation. \
 Also, a lack of page styling and layout. Updates to button styles and data displays in future itterations. \
 
+## Place Your Bids!
+
+![Image of App](./public/PlaceYourBids.jpg)
+
+## Set Up and Installation
+
+To run a local version of this app, clone down this repo, navigate into your directory in console and run npm install to install dependencies.
+Use npm start to generate a local server and view the application. Also clone down the linked server repo and check readme for installation for functionality.
+
 # User stories:
 
 Version 1: \

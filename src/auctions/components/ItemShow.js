@@ -47,7 +47,7 @@ class ItemShow extends Component {
           <ul>
             <li>{item.desc}</li>
             <li>{item.price}</li>
-            <li>{item.expiration_date}</li>
+            <li>{dateFormat(item.expiration_date, 'dddd, mmmm dS, yyyy, h:MM:ss TT')}</li>
           </ul>
           {isNotOwner ? (
             <ItemBid flash={flash} item={item} user={user} sendBid={this.handleBid}/>
