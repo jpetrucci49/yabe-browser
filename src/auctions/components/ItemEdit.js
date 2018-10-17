@@ -11,7 +11,7 @@ class ItemEdit extends Component {
       item: {
         name: '',
         desc: '',
-        price: ''
+        price: 0.00
       }
     }
   }

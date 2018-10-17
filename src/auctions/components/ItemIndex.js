@@ -39,7 +39,7 @@ class ItemIndex extends Component {
           <h3>{item.name}</h3>
           <ul>
             <li>{item.desc}</li>
-            <li>{item.price}</li>
+            <li>${item.price}</li>
             <li>{dateFormat(item.expiration_date, 'dddd, mmmm dS, yyyy, h:MM:ss TT')}</li>
           </ul>
           <Link to={`/items/${item._id}/show`}>

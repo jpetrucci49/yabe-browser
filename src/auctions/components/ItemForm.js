@@ -12,7 +12,7 @@ const ItemForm = (props) => {
         <p><input type="text" name="name" value={item.name} onChange={handleChange} placeholder={ item.name === '' ? 'name' : item.name } /></p>
         <p><input type="text" name="desc" value={item.desc} onChange={handleChange} placeholder={ item.desc === '' ? 'description' : item.desc } /></p>
         {action !== 'edit' ?
-          <p><input type="number" step="0.01" name="price" value={item.price || 0} onChange={handleChange} placeholder="price" /></p> : ''
+          <p><input type="number" step="0.01" name="price" value={item.price || 0.00} onChange={handleChange} placeholder="price" /></p> : ''
         }
 
 
