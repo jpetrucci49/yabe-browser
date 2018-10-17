@@ -29,7 +29,7 @@ class ItemNew extends Component {
       flash('Surely, you don\'t really want to pay someone to take this item. Try again!', 'flash-error')
     } else {
       const dollars = Object.assign({}, this.state.item)
-      dollars.price = '$' + this.state.item.price
+      dollars.price = '$' + Number(this.state.item.price).toFixed(2)
       const itemParams = JSON.stringify({item: dollars})
       const response = await axios.post(`${apiUrl}/items`, itemParams, { 'headers': { 'Authorization': `Bearer ${user.token}` }})
         .then(res => history.push(`/items/${res.data.item._id}/show`))

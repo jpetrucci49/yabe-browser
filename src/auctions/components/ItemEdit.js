@@ -16,6 +16,13 @@ class ItemEdit extends Component {
     }
   }
 
+  async componentDidMount() {
+    const { user } = this.props
+    const { id } = this.props.match.params
+    const response = await axios.get(`${apiUrl}/items/${id}`, { 'headers': { 'Authorization': `Bearer ${user.token}` }})
+    this.setState({item: response.data.item})
+  }
+
   handleChange = (event) => {
     const editedItem = {...this.state.item, [event.target.name]: event.target.value}
     this.setState({item: editedItem})
