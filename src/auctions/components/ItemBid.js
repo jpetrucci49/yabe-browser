@@ -32,8 +32,8 @@ class ItemBid extends Component {
       const placeBid = JSON.stringify({item: {price: newPrice}})
       const response = await axios.patch(`${apiUrl}/items/${match.params.id}`, placeBid, { 'headers': { 'Authorization': `Bearer ${user.token}` }})
         .then(() => this.props.sendBid(newPrice))
-        // .then(() => flash('You have successfully placed a bid!', 'flash-success'))
-        // .catch(() => flash('There was an problem with your bid.', 'flash-error'))
+        .then(() => flash('You have successfully placed a bid!', 'flash-success'))
+        .catch(() => flash('There was an problem with your bid.', 'flash-error'))
     }
   }
 
