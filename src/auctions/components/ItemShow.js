@@ -3,6 +3,7 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import { withRouter, Link } from 'react-router-dom'
 import ItemBid from './ItemBid'
+import Clock from '../../countdown/components/Clock'
 
 class ItemShow extends Component {
   constructor (props) {
@@ -48,6 +49,11 @@ class ItemShow extends Component {
             <li>{item.desc}</li>
             <li>${item.price}</li>
             <li>{dateFormat(item.expiration_date, 'dddd, mmmm dS, yyyy, h:MM:ss TT')}</li>
+            <li>
+              <Clock
+                expiration={item.expiration_date}
+              />
+            </li>
           </ul>
           {isNotOwner ? (
             <ItemBid flash={flash} item={item} user={user} sendBid={this.handleBid}/>

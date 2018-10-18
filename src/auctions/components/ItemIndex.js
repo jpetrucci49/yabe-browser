@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import { withRouter } from 'react-router-dom'
+import Clock from '../../countdown/components/Clock'
 
 class ItemIndex extends Component {
   constructor (props) {
@@ -41,6 +42,11 @@ class ItemIndex extends Component {
             <li>{item.desc}</li>
             <li>${item.price}</li>
             <li>{dateFormat(item.expiration_date, 'dddd, mmmm dS, yyyy, h:MM:ss TT')}</li>
+            <li>
+              <Clock
+                expiration={item.expiration_date}
+              />
+            </li>
           </ul>
           <Link to={`/items/${item._id}/show`}>
             <div className="centered">
