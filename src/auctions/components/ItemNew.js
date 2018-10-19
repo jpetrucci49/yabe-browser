@@ -12,7 +12,8 @@ class ItemNew extends Component {
       item: {
         name: '',
         desc: '',
-        price: 0.00
+        price: 0.00,
+        expiration_date: ''
       }
     }
   }
@@ -25,6 +26,7 @@ class ItemNew extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault()
+
     const { user, flash, history } = this.props
     if ( this.state.item.price < 0 ) {
       flash('Surely, you don\'t really want to pay someone to take this item. Try again!', 'flash-error')

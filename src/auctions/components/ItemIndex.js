@@ -41,7 +41,7 @@ class ItemIndex extends Component {
           <ul>
             <li>{item.desc}</li>
             <li>${item.price}</li>
-            <li>{dateFormat(item.expiration_date, 'dddd, mmmm dS, yyyy, h:MM:ss TT')}</li>
+            <li>{dateFormat(item.expiration_date, 'ddd, mmm dS, yyyy, h:MM:ss TT')}</li>
             <li>
               <Clock
                 expiration={item.expiration_date}
