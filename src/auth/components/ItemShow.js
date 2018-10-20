@@ -17,7 +17,6 @@ class ItemShow extends Component {
   handleBid = async (newPrice) => {
     const copy = Object.assign({}, this.state.item)
     copy.price = newPrice
-    copy.winner = this.props.user._id
     this.setState({item: copy})
   }
 
@@ -55,16 +54,6 @@ class ItemShow extends Component {
           <ul>
             <li>{item.desc}</li>
             <li>${item.price}</li>
-            {item.winner === user._id && isNotOwner && isNotExpired ? (
-              <li>You are top bidder </li>
-            ) : (
-              isNotOwner ? (
-                <li>Place a bid!</li>
-              ) : (
-                ''
-              )
-            )
-            }
             <li>{dateFormat(item.expiration_date, 'ddd, mmm dS, yyyy, h:MM:ss TT')}</li>
             <li>
               <Clock

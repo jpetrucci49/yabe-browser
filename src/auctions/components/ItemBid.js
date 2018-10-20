@@ -25,15 +25,23 @@ class ItemBid extends Component {
   handleSubmit = async (event) => {
     event.preventDefault()
     const { user, flash, history, match } = this.props
-    if ( this.state.item.bid <= 0 ) {
-      flash('Nice try, you cheeky devil. This isn\'t that kind of auction.', 'flash-error' )
+
+    if (this.props.item.winner === user._id) {
+      flash('You\'re already the top Bidder', 'flash-error')
     } else {
-      const newPrice = (Number(this.state.item.bid.toFixed(2)) + Number(Number(this.props.item.price).toFixed(2))).toFixed(2)
-      const placeBid = JSON.stringify({item: {price: newPrice}})
-      const response = await axios.patch(`${apiUrl}/items/${match.params.id}`, placeBid, { 'headers': { 'Authorization': `Bearer ${user.token}` }})
-        .then(() => this.props.sendBid(newPrice))
-        .then(() => flash('You have successfully placed a bid!', 'flash-success'))
-        .catch(() => flash('There was an problem with your bid.', 'flash-error'))
+      if ( this.state.item.bid <= 0 ) {
+        flash('Nice try, you cheeky devil. This isn\'t that kind of auction.', 'flash-error' )
+      } else {
+        const newPrice = (Number(this.state.item.bid.toFixed(2)) + Number(Number(this.props.item.price).toFixed(2))).toFixed(2)
+        const placeBid = JSON.stringify({item: {
+          price: newPrice,
+          winner: user._id
+        }})
+        const response = await axios.patch(`${apiUrl}/items/${match.params.id}`, placeBid, { 'headers': { 'Authorization': `Bearer ${user.token}` }})
+          .then(() => this.props.sendBid(newPrice))
+          .then(() => flash('You have successfully placed a bid!', 'flash-success'))
+          .catch(() => flash('There was an problem with your bid.', 'flash-error'))
+      }
     }
   }
 

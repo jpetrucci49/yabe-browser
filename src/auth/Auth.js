@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Link, withRouter } from 'react-router-dom'
 
 import AuthenticatedRoute from './components/AuthenticatedRoute'
 import Header from '../header/Header'
+import Home from './components/Home'
 import SignUp from './components/SignUp'
 import SignIn from './components/SignIn'
 import SignOut from './components/SignOut'
@@ -51,6 +52,9 @@ class Auth extends Component {
           )} />
           <Route exact path='/sign-in' render={() => (
             <SignIn flash={this.flash} setUser={this.setUser} />
+          )} />
+          <Route exact path='/' render={() => (
+            <Home flash={this.flash} user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/sign-out' render={() => (
             <SignOut flash={this.flash} clearUser={this.clearUser} user={user} />

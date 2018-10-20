@@ -7,16 +7,21 @@ class Clock extends Component {
       days: 0,
       hours: 0,
       minutes: 0,
-      seconds: 0
+      seconds: 0,
+      expired: false
     }
   }
 
   async componentWillMount() {
     this.getTimeUntil(this.props.expiration)
+    this.props.expired(this.state.expired)
   }
 
   async componentDidMount() {
-    this.countdown = setInterval(() => this.getTimeUntil(this.props.expiration), 1000)
+    this.countdown = setInterval(() => {
+      this.getTimeUntil(this.props.expiration)
+      this.props.expired(this.state.expired)
+    }, 1000)
   }
 
   async componentWillUnmount() {
@@ -29,16 +34,18 @@ class Clock extends Component {
     const minutes = Math.floor((time/1000/60)%60)
     const hours = Math.floor(time/(1000*60*60)%24)
     const days = Math.floor(time/(1000*60*60*24))
+    const expired = (time <= 0)
     this.setState({
       days: this.leading0(days),
       hours: this.leading0(hours),
       minutes: this.leading0(minutes),
-      seconds: this.leading0(seconds)
+      seconds: this.leading0(seconds),
+      expired
     })
   }
 
   leading0(num) {
-    if (num <= 0) {
+    if (num < 0) {
       return num
     } else if (num < 10) {
       return '0' + num
@@ -48,8 +55,7 @@ class Clock extends Component {
 
   counter() {
     const { days, hours, minutes, seconds } = this.state
-    const expired = (days < 0 && hours < 0 && minutes < 0 && seconds <= 0)
-    if (expired) {
+    if (this.state.expired) {
       return 'This auction has expired.'
     } else {
       let timer = ''

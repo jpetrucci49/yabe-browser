@@ -9,7 +9,8 @@ class ItemIndex extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      items: []
+      items: [],
+      expired: false
     }
   }
 
@@ -29,6 +30,10 @@ class ItemIndex extends Component {
     this.setState({items: response.data.items})
   }
 
+  updateExpired(newVal) {
+    this.setState({expired: newVal})
+  }
+
   render() {
     const { user } = this.props
     const itemCells = this.state.items.map(item => {
@@ -45,6 +50,7 @@ class ItemIndex extends Component {
             <li>
               <Clock
                 expiration={item.expiration_date}
+                expired={this.updateExpired.bind(this)}
               />
             </li>
           </ul>

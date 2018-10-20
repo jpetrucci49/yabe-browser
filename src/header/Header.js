@@ -29,7 +29,7 @@ const Header = ({ user }) => (
   <header className="main-header">
     <h1>Place Your Bids</h1>
     <nav>
-      { user && <span>Welcome, {user.email}</span>}
+      { user && <span>{user.email}</span>}
       { user ? authenticatedOptions : unauthenticatedOptions }
       { alwaysOptions }
     </nav>
