@@ -32,6 +32,7 @@ class ItemNew extends Component {
     } else {
       const dollars = Object.assign({}, this.state.item)
       dollars.price = this.state.item.price.toFixed(2)
+      dollars.expiration_date = (this.state.item.expiration_date + '-0400')
       const itemParams = JSON.stringify({item: dollars})
       const response = await axios.post(`${apiUrl}/items`, itemParams, { 'headers': { 'Authorization': `Bearer ${user.token}` }})
         .then(res => history.push(`/items/${res.data.item._id}/show`))

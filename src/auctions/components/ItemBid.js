@@ -13,24 +13,6 @@ class ItemBid extends Component {
         price: 0.00
       }
     }
-    // this.socket = io(apiUrl)
-    // this.emitBid = ev => {
-    //   ev.preventDefault()
-    //   this.socket.emit('SEND_BID', {
-    //     author: this.state.username,
-    //     price: this.state.item.price
-    //   })
-    //   this.setState({price: ''})
-    // }
-    // this.socket.on('RECEIVE_BID', function(data){
-    //   addBid(data)
-    // })
-    //
-    // const addBid = data => {
-    //   console.log(data)
-    //   this.setState({prices: [...this.state.item.prices, data]})
-    //   console.log(this.state.item.prices)
-    // }
   }
 
   handleChange = (event) => {

@@ -39,23 +39,6 @@ export const signIn = credentials => {
   })
 }
 
-// export const newItem = (data, user) => {
-//   return fetch(apiUrl + '/items', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'Authorization':`Token token=${user.token}`
-//     },
-//     body: JSON.stringify({
-//       item: {
-//         name: data.name,
-//         desc: data.desc,
-//         price: data.price
-//       }
-//     })
-//   })
-// }
-
 export const signOut = user => {
   return fetch(apiUrl + '/sign-out', {
     method: 'DELETE',

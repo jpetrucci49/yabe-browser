@@ -13,6 +13,10 @@ const ItemForm = (props) => {
          z(d.getDate()) + 'T' + z(d.getHours()) + ':'  + z(d.getMinutes()) +
          ':' + z(d.getSeconds()) + sign + z(off/60|0) + z(off%60)
   }
+  const date = new Date()
+  const localTime = toISOLocal(date).slice(0, 19)
+  const timeZone = toISOLocal(date).slice(19)
+
   return (
     <Fragment>
       <form onSubmit={handleSubmit}>
@@ -22,7 +26,7 @@ const ItemForm = (props) => {
         <p><input type='text' name='desc' value={item.desc} onChange={handleChange} placeholder={ item.desc === '' ? 'Description' : item.desc } /></p>
         {action !== 'edit' ? (
           <Fragment>
-            <p><input type='datetime-local' name='expiration_date' step='1' value={!item.expiration_date ? toISOLocal(new Date()).substr(0, 19) : item.expiration_date} onChange={handleChange} /></p>
+            <p><input type='datetime-local' name='expiration_date' step='1' value={!item.expiration_date ? localTime : item.expiration_date} onChange={handleChange} timezome={timeZone}/></p>
             <p><input type='number' step='0.01' name='price' value={item.price || 0.00} onChange={handleChange} placeholder='price' /></p>
           </Fragment>
         ) : ''
