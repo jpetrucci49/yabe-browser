@@ -28,7 +28,7 @@ class ChangePassword extends Component {
     changePassword(this.state, user)
       .then(handleErrors)
       .then(() => flash(messages.changePasswordSuccess, 'flash-success'))
-      .then(() => history.push('/'))
+      .then(() => history.push('/yabe-browser'))
       .catch(() => {
         this.setState({
           oldPassword: '',

@@ -10,7 +10,7 @@ class SignOut extends Component {
 
     signOut(user)
       .finally(() => flash(messages.signOutSuccess, 'flash-success'))
-      .finally(() => history.push('/'))
+      .finally(() => history.push('/yabe-browser'))
       .finally(() => clearUser())
   }
 

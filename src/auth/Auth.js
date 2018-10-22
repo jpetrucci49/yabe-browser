@@ -53,7 +53,7 @@ class Auth extends Component {
           <Route exact path='/sign-in' render={() => (
             <SignIn flash={this.flash} setUser={this.setUser} />
           )} />
-          <Route exact path='/' render={() => (
+          <Route exact path='/yabe-browser' render={() => (
             <Home flash={this.flash} user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/sign-out' render={() => (
