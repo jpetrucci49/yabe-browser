@@ -6,7 +6,6 @@ import * as io from 'socket.io-client'
 import apiUrl from './apiConfig'
 
 const socket = io(apiUrl)
-console.log(socket)
 
 const App = (props) => (
   <Fragment>
