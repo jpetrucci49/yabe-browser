@@ -4,6 +4,8 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import { withRouter } from 'react-router-dom'
 import Clock from '../../countdown/components/Clock'
+import SocketContext from '../../socket-context'
+import * as io from 'socket.io-client'
 
 class ItemIndex extends Component {
   constructor (props) {
@@ -26,8 +28,16 @@ class ItemIndex extends Component {
 
   async componentDidMount() {
     const { user } = this.props
-    const response = await axios.get(`${apiUrl}/items`, { 'headers': { 'Authorization': `Bearer ${user.token}` }})
-    this.setState({items: response.data.items})
+    await axios.get(`${apiUrl}/items`, { 'headers': { 'Authorization': `Bearer ${user.token}` }})
+      .then(res => {
+        console.log(res)
+        console.log(this.props)
+        return res
+      }).then(res => {
+        this.props.socket.emit('auctions-indexed', res.data)
+        return res
+      })
+      .then((res) => this.setState({items: res.data.items}))
   }
 
   updateExpired(newVal) {
@@ -95,7 +105,12 @@ class ItemIndex extends Component {
       </section>
     )
   }
-
 }
 
-export default withRouter(ItemIndex)
+const ItemIndexWithSocket = props => (
+  <SocketContext.Consumer>
+    {socket => <ItemIndex {...props} socket={socket} />}
+  </SocketContext.Consumer>
+)
+
+export default withRouter(ItemIndexWithSocket)

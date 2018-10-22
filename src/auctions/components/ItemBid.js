@@ -3,6 +3,8 @@ import apiUrl from '../../apiConfig'
 import BidForm from './BidForm'
 import axios from 'axios'
 import { withRouter } from 'react-router-dom'
+import SocketContext from '../../socket-context'
+import * as io from 'socket.io-client'
 
 class ItemBid extends Component {
   constructor(props) {
@@ -13,6 +15,24 @@ class ItemBid extends Component {
         price: 0.00
       }
     }
+    // this.socket = io(apiUrl)
+    // this.emitBid = ev => {
+    //   ev.preventDefault()
+    //   this.socket.emit('SEND_BID', {
+    //     author: this.state.username,
+    //     price: this.state.item.price
+    //   })
+    //   this.setState({price: ''})
+    // }
+    // this.socket.on('RECEIVE_BID', function(data){
+    //   addBid(data)
+    // })
+    //
+    // const addBid = data => {
+    //   console.log(data)
+    //   this.setState({prices: [...this.state.item.prices, data]})
+    //   console.log(this.state.item.prices)
+    // }
   }
 
   handleChange = (event) => {
@@ -53,7 +73,7 @@ class ItemBid extends Component {
         <div className='row'>
           <div className='col-md-12'>
             <BidForm
-              action="bid on this"
+              action='bid on this'
               item={item}
               handleChange={this.handleChange}
               handleSubmit={this.handleSubmit}
