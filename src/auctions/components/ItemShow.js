@@ -4,6 +4,8 @@ import apiUrl from '../../apiConfig'
 import { withRouter, Link } from 'react-router-dom'
 import ItemBid from './ItemBid'
 import Clock from '../../countdown/components/Clock'
+import SocketContext from '../../socket-context'
+import * as io from 'socket.io-client'
 
 class ItemShow extends Component {
   constructor (props) {
@@ -19,6 +21,7 @@ class ItemShow extends Component {
     copy.price = newPrice
     copy.winner = this.props.user._id
     this.setState({item: copy})
+    this.props.socket.emit('bid-placed', this.state.item)
   }
 
   async deleteItem(event, itemId) {
@@ -34,8 +37,9 @@ class ItemShow extends Component {
   async componentDidMount() {
     const { user } = this.props
     const { id } = this.props.match.params
-    const response = await axios.get(`${apiUrl}/items/${id}`, { 'headers': { 'Authorization': `Bearer ${user.token}` }})
-    this.setState({item: response.data.item})
+    this.props.socket.on('bid-placed', (res) => this.setState({item: res}))
+    await axios.get(`${apiUrl}/items/${id}`, { 'headers': { 'Authorization': `Bearer ${user.token}` }})
+      .then((res) => this.setState({item: res.data.item}))
   }
 
   updateExpired(newVal) {
@@ -95,4 +99,9 @@ class ItemShow extends Component {
   }
 }
 
-export default withRouter(ItemShow)
+const ItemShowWithSocket = props => (
+  <SocketContext.Consumer>
+    {socket => <ItemShow {...props} socket={socket} />}
+  </SocketContext.Consumer>
+)
+export default withRouter(ItemShowWithSocket)

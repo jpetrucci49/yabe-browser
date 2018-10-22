@@ -29,15 +29,18 @@ class ItemIndex extends Component {
   async componentDidMount() {
     const { user } = this.props
     await axios.get(`${apiUrl}/items`, { 'headers': { 'Authorization': `Bearer ${user.token}` }})
-      .then(res => {
-        console.log(res)
-        console.log(this.props)
-        return res
-      }).then(res => {
-        this.props.socket.emit('auctions-indexed', res.data)
-        return res
-      })
       .then((res) => this.setState({items: res.data.items}))
+      .then(() => {
+        this.state.items.forEach((item, index) => {
+          this.props.socket.on('bid-placed', bidValue => {
+            if(item._id === bidValue._id) {
+              const itemsCopy = this.state.items
+              itemsCopy[index] = bidValue
+              this.setState({items: itemsCopy})
+            }
+          })
+        })
+      })
   }
 
   updateExpired(newVal) {

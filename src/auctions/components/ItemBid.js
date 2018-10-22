@@ -3,8 +3,6 @@ import apiUrl from '../../apiConfig'
 import BidForm from './BidForm'
 import axios from 'axios'
 import { withRouter } from 'react-router-dom'
-import SocketContext from '../../socket-context'
-import * as io from 'socket.io-client'
 
 class ItemBid extends Component {
   constructor(props) {
@@ -44,6 +42,7 @@ class ItemBid extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault()
+
     const { user, flash, history, match } = this.props
 
     if (this.props.item.winner === user._id) {
@@ -55,9 +54,9 @@ class ItemBid extends Component {
         const newPrice = (Number(this.state.item.bid.toFixed(2)) + Number(Number(this.props.item.price).toFixed(2))).toFixed(2)
         const placeBid = JSON.stringify({item: {
           price: newPrice,
-          winner: user._id
+          winner: user
         }})
-        const response = await axios.patch(`${apiUrl}/items/${match.params.id}`, placeBid, { 'headers': { 'Authorization': `Bearer ${user.token}` }})
+        await axios.patch(`${apiUrl}/items/${match.params.id}`, placeBid, { 'headers': { 'Authorization': `Bearer ${user.token}` }})
           .then(() => this.props.sendBid(newPrice))
           .then(() => flash('You have successfully placed a bid!', 'flash-success'))
           .catch(() => flash('There was an problem with your bid.', 'flash-error'))
