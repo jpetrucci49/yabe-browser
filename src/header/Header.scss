@@ -21,7 +21,7 @@ $charcoal: #bbb;
   justify-content: flex-end;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .main-header {
     flex-direction: column;
     font-size: 0.7em;
@@ -34,7 +34,7 @@ $charcoal: #bbb;
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 400px) {
   .main-header > nav {
     flex-direction: column;
     width: 100%;
@@ -46,5 +46,9 @@ $charcoal: #bbb;
       text-align: center;
       width: 80%;
     }
+  }
+
+  h1 {
+    font-size: 2em;
   }
 }
