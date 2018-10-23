@@ -2,7 +2,7 @@ import React from 'react'
 
 const Home = ({ user }) => {
   return (
-    <section className='col-md-12'>
+    <section className='col-md-12 shell'>
       <div className='home-para'>
         {user ? (
           <h3>Welcome back, {user.email.substr(0, user.email.indexOf('@'))}</h3>

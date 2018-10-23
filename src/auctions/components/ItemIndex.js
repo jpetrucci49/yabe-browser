@@ -54,56 +54,58 @@ class ItemIndex extends Component {
       const dateFormat = require('dateformat')
 
       return (
-        <div key={item._id} className="col-md-4">
-          <h3>{item.name}</h3>
-          <ul>
-            <li>{item.desc}</li>
-            <li>${item.price}</li>
-            <li>{dateFormat(item.expiration_date, 'ddd, mmm dS, yyyy, h:MM:ss TT')}</li>
-            <li>
+        <div key={item._id} className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <div className="box-part text-center">
+            <div className="title">{item.name}</div>
+            <div className="text">{item.desc}</div>
+            <div className="text">${item.price}</div>
+            <div className="text">{dateFormat(item.expiration_date, 'ddd, mmm dS, yyyy, h:MM:ss TT')}</div>
+            <div className="text">
               <Clock
                 expiration={item.expiration_date}
                 expired={this.updateExpired.bind(this)}
               />
-            </li>
-          </ul>
-          <Link to={`/items/${item._id}/show`}>
-            <div className="centered">
-              <button> View this Auction </button>
             </div>
-          </Link><br />
-          {isOwner ? (
-            <Fragment>
-              <Link to={`/items/${item._id}/edit`}>
-                <div className="centered">
-                  <button className="centered"> Edit this Auction </button>
-                </div>
-              </Link><br/>
-              <Link to={'/items/'}>
-                <div className="centered">
-                  <button className="centered" onClick={event => this.deleteItem(event, item._id)}> Delete this Auction </button>
-                </div>
-              </Link><br/>
-            </Fragment>
-          ) : (
-            ''
-          )}
+            <Link to={`/items/${item._id}/show`}>
+              <div className="centered">
+                <button className='centered btn btn-info'> View this Auction </button>
+              </div>
+            </Link><br />
+            {isOwner ? (
+              <Fragment>
+                <Link to={`/items/${item._id}/edit`}>
+                  <div className="centered">
+                    <button className='centered btn btn-info'> Edit this Auction </button>
+                  </div>
+                </Link><br/>
+                <Link to={'/items/'}>
+                  <div className="centered">
+                    <button className='centered btn btn-info' onClick={event => this.deleteItem(event, item._id)}> Delete this Auction </button>
+                  </div>
+                </Link><br/>
+              </Fragment>
+            ) : (
+              ''
+            )}
+          </div>
         </div>
       )
     })
 
     return (
-      <section className='container'>
-        <div className='row'>
-          {itemCells.length === 0 ? (
-            <div className="col-md-4">
-              <h3>Sorry, there is no list</h3>
-            </div>
-          ) : (
-            <Fragment>
-              {itemCells}
-            </Fragment>
-          )}
+      <section className='box'>
+        <div className="container">
+          <div className="row">
+            {itemCells.length === 0 ? (
+              <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <h3>Sorry, there is no list</h3>
+              </div>
+            ) : (
+              <Fragment>
+                {itemCells}
+              </Fragment>
+            )}
+          </div>
         </div>
       </section>
     )

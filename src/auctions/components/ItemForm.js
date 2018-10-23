@@ -29,11 +29,7 @@ const ItemForm = (props) => {
             <p><input type='datetime-local' name='expiration_date' step='1' value={!item.expiration_date ? localTime : item.expiration_date} onChange={handleChange} timezome={timeZone}/></p>
             <p><input type='number' step='0.01' name='price' value={item.price || 0.00} onChange={handleChange} placeholder='price' /></p>
           </Fragment>
-        ) : ''
-        }
-
-
-
+        ) : '' }
         <p><input type='submit' value='Submit' /></p>
       </form>
     </Fragment>

@@ -21,7 +21,7 @@ const unauthenticatedOptions = (
 
 const alwaysOptions = (
   <Fragment>
-    <Link to="/">Home</Link>
+    <Link to="/yabe-browser">Home</Link>
   </Fragment>
 )
 

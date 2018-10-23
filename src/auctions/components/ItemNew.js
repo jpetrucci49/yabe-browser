@@ -45,15 +45,17 @@ class ItemNew extends Component {
     const { item } = this.state
 
     return (
-      <section className='container'>
-        <div className='row'>
-          <div className='col-md-12'>
-            <ItemForm
-              action="create"
-              item={item}
-              handleChange={this.handleChange}
-              handleSubmit={this.handleSubmit}
-            />
+      <section className='box'>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12 shell'>
+              <ItemForm
+                action='create'
+                item={item}
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
+              />
+            </div>
           </div>
         </div>
       </section>

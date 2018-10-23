@@ -53,48 +53,52 @@ class ItemShow extends Component {
     const isNotExpired = (this.state.expired != true)
     const dateFormat = require('dateformat')
     return (
-      <section className='col-md-12'>
-        <div key={item._id}>
-          <h3>{item.name}</h3>
-          <ul>
-            <li>{item.desc}</li>
-            <li>${item.price}</li>
+      <div key={item._id} className="col-lg-12 col-md-12 col-sm-12 col-xs-12 shell">
+        <div className="box-part text-center">
+          <div className="title">{item.name}</div>
+          <div className="text">{item.desc}</div>
+          <div className="text">${item.price}</div>
+          <div className="text">
+            {item.winner === user._id && isNotOwner && !isNotExpired ? 'You Won this Auction!' : '' }
             {item.winner === user._id && isNotOwner && isNotExpired ? (
-              <li>You are top bidder </li>
+              'You are top bidder'
             ) : (
-              isNotOwner ? (
-                <li>Place a bid!</li>
+              isNotOwner && isNotExpired? (
+                'Place a bid!'
               ) : (
                 ''
               )
-            )
-            }
-            <li>{dateFormat(item.expiration_date, 'ddd, mmm dS, yyyy, h:MM:ss TT')}</li>
-            <li>
-              <Clock
-                expiration={item.expiration_date}
-                expired={this.updateExpired.bind(this)}
-              />
-            </li>
-          </ul>
-          { isNotExpired ? (isNotOwner ? (
-            <ItemBid flash={flash} item={item} user={user} sendBid={this.handleBid}/>
-          ) : (
-            <Fragment>
-              <Link to={`/items/${item._id}/edit`}>
-                <div className="centered">
-                  <button> Edit this Auction </button>
-                </div>
-              </Link><br />
-              <Link to={'/items/'}>
-                <div className="centered">
-                  <button onClick={event => this.deleteItem(event, item._id)}> Delete this Auction </button>
-                </div>
-              </Link><br/>
-            </Fragment>
-          )) : ''}
+            )}
+          </div>
+          <div className="text date">
+            {dateFormat(item.expiration_date, 'ddd, mmm dS, yyyy, h:MM:ss TT')}
+          </div>
+          <div className="text">
+            <Clock
+              expiration={item.expiration_date}
+              expired={this.updateExpired.bind(this)}
+            />
+          </div>
+          <div className="text">
+            { isNotExpired ? (isNotOwner ? (
+              <ItemBid flash={flash} item={item} user={user} sendBid={this.handleBid}/>
+            ) : (
+              <Fragment>
+                <Link to={`/items/${item._id}/edit`}>
+                  <div className="centered">
+                    <button className='centered btn btn-info'> Edit this Auction </button>
+                  </div>
+                </Link><br />
+                <Link to={'/items/'}>
+                  <div className="centered">
+                    <button className='centered btn btn-info' onClick={event => this.deleteItem(event, item._id)}> Delete this Auction </button>
+                  </div>
+                </Link><br/>
+              </Fragment>
+            )) : ''}
+          </div>
         </div>
-      </section>
+      </div>
     )
   }
 }

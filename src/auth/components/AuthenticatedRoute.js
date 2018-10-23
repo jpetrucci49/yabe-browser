@@ -11,7 +11,7 @@ const AuthenticatedRoute = ({
     return <Route {...rest} render={render} />
   } else {
     return <Route {...rest} render={props =>
-      user ? <Component {...props} /> : <Redirect to='/' />
+      user ? <Component {...props} /> : <Redirect to='/yabe-browser' />
     } />
   }
 }
