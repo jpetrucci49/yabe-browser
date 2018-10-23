@@ -97,7 +97,7 @@ class ItemIndex extends Component {
         <div className="container">
           <div className="row">
             {itemCells.length === 0 ? (
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 shell centered">
                 <h3>Sorry, there is no list</h3>
               </div>
             ) : (
