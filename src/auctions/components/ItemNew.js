@@ -12,7 +12,7 @@ class ItemNew extends Component {
       item: {
         name: '',
         desc: '',
-        price: 0.00
+        price: '0.00'
       }
     }
   }

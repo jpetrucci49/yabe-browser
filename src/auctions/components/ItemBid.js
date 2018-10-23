@@ -9,8 +9,8 @@ class ItemBid extends Component {
     super(props)
     this.state = {
       item: {
-        bid: 0.00,
-        price: 0.00
+        bid: '0.00',
+        price: '0.00'
       }
     }
   }
